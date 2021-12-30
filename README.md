@@ -1,4 +1,3 @@
-
 # Python
 
 - [Python](#python)
@@ -7,19 +6,21 @@
   - [Convertring Number to String](#convertring-number-to-string)
   - [Concatanation](#concatanation)
   - [string formating](#string-formating)
+    - [string method](#string-method)
   - [Function](#function)
+    - [return](#return)
+    - [lambda function](#lambda-function)
   - [List](#list)
     - [create list](#create-list)
   - [tuple](#tuple)
   - [Dictionary](#dictionary)
-  - [Function](#function-1)
-    - [lambda function](#lambda-function)
   - [Condition](#condition)
     - [Nested If](#nested-if)
     - [logical operator](#logical-operator)
     - [membership operator](#membership-operator)
   - [loop](#loop)
     - [range](#range)
+      - [ex:](#ex)
 
 jupyter nbconvert --to markdown crash_course.ipynb --output README.md
 
@@ -35,15 +36,28 @@ jupyter nbconvert --to markdown crash_course.ipynb --output README.md
 x = 1          # int
 y = 1.234      #float
 name = 'Shoab'  #str
-is_cool= True
+is_admin= True
 print(x)
 print(y)
+print(name)
 
+if is_admin:
+    print("allow")
+else:
+    print("not allowed")
+
+lover = False
+
+if not lover: # !0 =1
+    print("Not a lover")
 
 ```
 
     1
     1.234
+    Shoab
+    allow
+    Not a lover
     
 
 ### Multiple assignment
@@ -71,7 +85,7 @@ z = float(y)
 print(type(z), z)
 ```
 
-    <class 'float'> 2.0
+    <class 'float'> 1.0
     
 
 ## Concatanation
@@ -101,7 +115,7 @@ print('My name is {name} and I am {age}'.format (name=name, age=age))
     My name is Brad and I am 37
     
 
-###string method
+### string method
 
 
 
@@ -110,6 +124,7 @@ s='hello world'
 print(s.capitalize( ))
 print(s.endswith('d' ))
 print(s.split( ))
+print("81/1,aruapara,kushtia".split(","))
 print(s.find('r'))
 print(s.upper( ))
 
@@ -119,6 +134,7 @@ print(s.upper( ))
     Hello world
     True
     ['hello', 'world']
+    ['81/1', 'aruapara', 'kushtia']
     8
     HELLO WORLD
     
@@ -129,22 +145,75 @@ print(s.upper( ))
 
 
 ```python
-def printInfo(n):
-    return n**2
+print("Outside of function printInfo ")
+def printInfo():
+    print("Inside of function printInfo ") 
+    print("Inside of function printInfo ")  
+    if 10>3:
+        print("still inside")
+print("Outside of function printInfo ")
 
-print("Outside")
+
+print("Outside of function printInfo ")
+
+
+
 ```
 
-    Outside
+    Outside of function printInfo 
+    Outside of function printInfo 
+    Outside of function printInfo 
     
+
+
+```python
+printInfo()
+```
+
+    Inside of function printInfo 
+    Inside of function printInfo 
+    still inside
+    
+
+### return
+
+
+```python
+def printInfo(n):
+    return n**2
+```
 
 
 ```python
 sqr = printInfo(4)
 print(sqr)
+
 ```
 
     16
+    
+
+### lambda function
+
+def
+
+
+```python
+# def getSum(num1, num2):
+#     total= num1+num2
+#     return total
+# or
+# # def getSum(num1, num2): return num1+num2
+getSum = lambda num1,num2 : num1+num2
+
+```
+
+
+```python
+print(getSum(1,2))
+```
+
+    3
     
 
 ## List
@@ -156,8 +225,7 @@ print(sqr)
 numbers = [1,2,3,4,5]
 fruits = ['Apples', 'Oranges', 'Graps']
 #access
-print(fruits[1])
-fruits[1] = 'banna'
+print(fruits[0])
 #finding length
 print(len(fruits))
 #add
@@ -168,6 +236,8 @@ fruits.remove('Graps')
 print(fruits)
 #insert(i,el)- add an element at position `i`
 fruits.insert(1, 'Strawberries')
+print(fruits)
+fruits[1] = 'banna'
 print(fruits)
 
 #remove with pop
@@ -181,13 +251,14 @@ fruits.sort()
 print(fruits)
 ```
 
-    Oranges
+    Apples
     3
-    ['Apples', 'banna', 'Graps', 'mangoes']
+    ['Apples', 'Oranges', 'Graps', 'mangoes']
+    ['Apples', 'Oranges', 'mangoes']
+    ['Apples', 'Strawberries', 'Oranges', 'mangoes']
+    ['Apples', 'banna', 'Oranges', 'mangoes']
+    ['mangoes', 'banna', 'Apples']
     ['Apples', 'banna', 'mangoes']
-    ['Apples', 'Strawberries', 'banna', 'mangoes']
-    ['mangoes', 'Strawberries', 'Apples']
-    ['Apples', 'Strawberries', 'mangoes']
     
 
 ## tuple
@@ -196,8 +267,7 @@ print(fruits)
 ```python
 #create tuple
 fruits=('Apples', 'Oranges','Grapes' )
-# not changeable
-# fruits[1] = 'banna'
+
 print(fruits)
 print(fruits[1])
 ```
@@ -206,24 +276,54 @@ print(fruits[1])
     Oranges
     
 
+
+```python
+# unlke list tuple is not changeable
+fruits[1] = 'banna'
+```
+
+
+    ---------------------------------------------------------------------------
+
+    TypeError                                 Traceback (most recent call last)
+
+    C:\Users\MDSHOA~1\AppData\Local\Temp/ipykernel_12496/2254711348.py in <module>
+          1 # not changeable
+    ----> 2 fruits[1] = 'banna'
+    
+
+    TypeError: 'tuple' object does not support item assignment
+
+
 ## Dictionary
 
 
 ```python
+# storing student info in a list
+student= ['Shoab', 191902039, 'PC-191']
+# access  using `index` position
+print(student)
+print(student[0])
+print(student[1])
+# vs 
+# in a dictionary:
 student = {
     'name' : "soab",
     'id':191902061,
     'batch':'PC-191'
 }
-# access
-print(student)
+# access using `key`
 print()
+print(student)
 print(student['name'])
 print(student['id'])
 ```
 
-    {'name': 'soab', 'id': 191902061, 'batch': 'PC-191'}
+    ['Shoab', 191902039, 'PC-191']
+    Shoab
+    191902039
     
+    {'name': 'soab', 'id': 191902061, 'batch': 'PC-191'}
     soab
     191902061
     
@@ -337,63 +437,6 @@ print(student[1]['name'])
     Sarukh
     
 
-## Function
-
-
-```python
-# define
-def sayHello(name):
-    print(f'Hello {name}')
-
-# call
-sayHello('Shoab')
-```
-
-    HelloShoab
-    
-
-
-```python
-# return
-def getSum(num1, num2):
-    total= num1+num2
-    return total
-```
-
-
-```python
-v=getSum(1,2)
-print(v)
-print(getSum(2,5))
-```
-
-    3
-    7
-    
-
-### lambda function
-
-def
-
-
-```python
-# def getSum(num1, num2):
-#     total= num1+num2
-#     return total
-# or
-# # def getSum(num1, num2): return num1+num2
-getSum = lambda num1,num2 : num1+num2
-
-```
-
-
-```python
-print(getSum(1,2))
-```
-
-    3
-    
-
 ## Condition
 
 
@@ -495,10 +538,8 @@ if x not in lists:
 
 ```python
 people=['maria','shoab','bappy']
-for every_person in people:
-    print(f'Current person: {every_person}')
-
-
+for person in people:
+    print(f'Current person: {person}')
 
 ```
 
@@ -574,4 +615,109 @@ for i in range(len(people)):
 ```
 
     3
+    
+
+#### ex:
+
+
+```python
+Result=[{
+'Semi': 191, 'CH': 9, 'GPA': 3.75, 'CGPA': 3.75
+},
+{
+'Semi': 191, 'CH': 9, 'GPA': 3.75, 'CGPA': 3.75
+},
+{
+'Semi': 191, 'CH': 9, 'GPA': 3.75, 'CGPA': 3.75
+},
+{
+'Semi': 191, 'CH': 9, 'GPA': 3.75, 'CGPA': 3.75
+},
+]
+
+for r in Result:
+    print(f"Semester: {r['Semi']}, Credi: {r['CH']}, GPA: {r['GPA']},CGPA: {r['CGPA']}")
+
+```
+
+    Semester: 191, Credi: 9, GPA: 3.75,CGPA: 3.75
+    Semester: 191, Credi: 9, GPA: 3.75,CGPA: 3.75
+    Semester: 191, Credi: 9, GPA: 3.75,CGPA: 3.75
+    Semester: 191, Credi: 9, GPA: 3.75,CGPA: 3.75
+    
+
+
+```python
+import requests
+import json
+
+```
+
+
+```python
+url = 'https://reqres.in/api/users?page=2'
+res = requests.get(url)
+res = json.loads(res.text)
+res
+```
+
+
+
+
+    {'page': 2,
+     'per_page': 6,
+     'total': 12,
+     'total_pages': 2,
+     'data': [{'id': 7,
+       'email': 'michael.lawson@reqres.in',
+       'first_name': 'Michael',
+       'last_name': 'Lawson',
+       'avatar': 'https://reqres.in/img/faces/7-image.jpg'},
+      {'id': 8,
+       'email': 'lindsay.ferguson@reqres.in',
+       'first_name': 'Lindsay',
+       'last_name': 'Ferguson',
+       'avatar': 'https://reqres.in/img/faces/8-image.jpg'},
+      {'id': 9,
+       'email': 'tobias.funke@reqres.in',
+       'first_name': 'Tobias',
+       'last_name': 'Funke',
+       'avatar': 'https://reqres.in/img/faces/9-image.jpg'},
+      {'id': 10,
+       'email': 'byron.fields@reqres.in',
+       'first_name': 'Byron',
+       'last_name': 'Fields',
+       'avatar': 'https://reqres.in/img/faces/10-image.jpg'},
+      {'id': 11,
+       'email': 'george.edwards@reqres.in',
+       'first_name': 'George',
+       'last_name': 'Edwards',
+       'avatar': 'https://reqres.in/img/faces/11-image.jpg'},
+      {'id': 12,
+       'email': 'rachel.howell@reqres.in',
+       'first_name': 'Rachel',
+       'last_name': 'Howell',
+       'avatar': 'https://reqres.in/img/faces/12-image.jpg'}],
+     'support': {'url': 'https://reqres.in/#support-heading',
+      'text': 'To keep ReqRes free, contributions towards server costs are appreciated!'}}
+
+
+
+
+```python
+
+list_of_user = res['data']
+for user in list_of_user:
+    email = user['email']
+    firstName = user['first_name']
+
+    print(f"Email: {email}, Name: {firstName} ")
+```
+
+    Email: michael.lawson@reqres.in, Name: Michael 
+    Email: lindsay.ferguson@reqres.in, Name: Lindsay 
+    Email: tobias.funke@reqres.in, Name: Tobias 
+    Email: byron.fields@reqres.in, Name: Byron 
+    Email: george.edwards@reqres.in, Name: George 
+    Email: rachel.howell@reqres.in, Name: Rachel 
     
